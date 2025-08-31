@@ -35,7 +35,7 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B package --file demo/pom.xml
       
       - name: Get artifact name
         id: get_artifact_name
