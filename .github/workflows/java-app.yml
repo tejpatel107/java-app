@@ -18,6 +18,10 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+
+    defaults:   # ⬅️ Place here (inside the job, above steps)
+      run:
+        working-directory: demo
     
     steps:
       - name: Checkout repository
@@ -36,7 +40,7 @@ jobs:
 
       # ⬇️ Skip tests here to avoid surefire failures in Actions
       - name: Build with Maven (skip tests)
-        run: mvn -B clean package -DskipTests --file demo/pom.xml
+        run: mvn -B clean package -DskipTests --file pom.xml
       
       - name: Get artifact name
         id: get_artifact_name
