@@ -1,17 +1,16 @@
 package com.java_app.demo.controllers;
 
-import com.java_app.demo.entity.HitCounter;
-import com.java_app.demo.repository.HitCounterRepository;
-import com.java_app.demo.services.IpService;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Optional;
+import com.java_app.demo.entity.HitCounter;
+import com.java_app.demo.repository.HitCounterRepository;
+import com.java_app.demo.services.IpService;
 
 @RestController
 @RequestMapping("/home")
