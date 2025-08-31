@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.java_app.demo.entity.HitCounter;
 
 @Repository
-public interface HitCounterRepository extends JpaRepository<HitCounter, Long> {
+public interface HitCounterRepository extends JpaRepository<HitCounter, String> {
 }
