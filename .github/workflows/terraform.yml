@@ -46,6 +46,15 @@ name: 'Terraform'
 
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: 'Terraform action to perform'
+        required: true
+        default: apply
+        type: choice
+        options:
+          - apply
+          - destroy
   push:
     branches: [ "main" ]
     paths: 
