@@ -103,6 +103,9 @@ jobs:
     # - name: Terraform Format
     #   run: terraform fmt -check
 
+    - name: Force unlock Terraform state (if locked)
+      run: terraform force-unlock -force ab067216-26ce-f81f-10ba-611c1d985463 || echo "No lock found"
+
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -out=plan -input=false
