@@ -13,7 +13,7 @@ module "vpc" {
 #---------------------
 module "public_subnet_1" {
   source     = "./subnets"
-  vpc_id     = module.vpc.vpc-id
+  vpc_id     = module.vpc.vpc_id
   cidr_block = "10.0.1.0/24"
   az         = "us-east-1a"
   name       = "public-subnet-1-1a"
@@ -129,7 +129,7 @@ module "rds_security_group" {
       from_port = 5432, 
       to_port = 5432, 
       protocol = "tcp", 
-      security_groups = [module.sg_private.sg_id, module.sg_public.sg_id], description = "Postgres access from app servers" 
+      security_groups = [module.private_security_group.sg_id, module.public_security_group.sg_id], description = "Postgres access from app servers" 
     }
   ]
 }
