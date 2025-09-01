@@ -145,7 +145,7 @@ module "rds_security_group" {
 module "public_route_table" {
   source                     = "./route tables"
   vpc_id                      = module.vpc.vpc_id
-  subnet_ids                  = [module.public_subnet_1.id,module.public_subnet_2.id,modulde.public_subnet_3.id]
+  subnet_ids                  = [module.public_subnet_1.id,module.public_subnet_2.id,module.public_subnet_3.id]
   internet_gateway_id          = module.vpc.igw_id
   create_internet_gateway_route = true
   name                         = "java-app-vpc-public-rt"
