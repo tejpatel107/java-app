@@ -18,7 +18,7 @@ resource "aws_db_instance" "postgres" {
   skip_final_snapshot     = true
 
   vpc_security_group_ids  = var.vpc_security_group_ids
-  db_subnet_group_name    = aws_db_subnet_group.subnet_group.name
+  db_subnet_group_name    = var.db_subnet_group_name
   publicly_accessible     = false
 
   tags = {
