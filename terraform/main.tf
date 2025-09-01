@@ -201,7 +201,7 @@ module "jar_files_bucket" {
 #---------------------
 module "load_balancer" {
   source = "./load balancer"
-  security_groups = [module.public_security_group]
+  security_groups = [module.public_security_group.sg_id]
   subnets = [module.public_subnet_1.subnet_id,module.public_subnet_2.subnet_id,module.public_subnet_3.subnet_id]
   vpc_id = module.vpc.vpc_id
 }
