@@ -58,4 +58,4 @@ jobs:
 
       - name: Upload JAR to S3
         run: |
-          aws s3 cp target/$ARTIFACT_NAME s3://us-east-1-iac-test-bucket/jars/$ARTIFACT_NAME
+          aws s3 cp target/$ARTIFACT_NAME s3://java-app-jar-files-bucket/jars/$ARTIFACT_NAME
