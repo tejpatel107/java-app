@@ -14,7 +14,7 @@ module "vpc" {
 # Public Subnets
 #---------------------
 module "public_subnet_1" {
-  source     = "./subnet"
+  source     = "./subnets"
   vpc_id     = module.vpc.vpc-id
   cidr_block = "10.0.1.0/24"
   az         = "us-east-1a"
@@ -23,7 +23,7 @@ module "public_subnet_1" {
 }
 
 module "public_subnet_2" {
-  source     = "./subnet"
+  source     = "./subnets"
   vpc_id     = module.vpc.vpc_id
   cidr_block = "10.0.2.0/24"
   az         = "us-east-1b"
@@ -32,7 +32,7 @@ module "public_subnet_2" {
 }
 
 module "public_subnet_3" {
-  source     = "./subnet"
+  source     = "./subnets"
   vpc_id     = module.vpc.vpc_id
   cidr_block = "10.0.3.0/24"
   az         = "us-east-1c"
@@ -44,7 +44,7 @@ module "public_subnet_3" {
 # Private Subnets
 #---------------------
 module "private_subnet_1" {
-  source     = "./subnet"
+  source     = "./subnets"
   vpc_id     = module.vpc.vpc_id
   cidr_block = "10.0.4.0/24"
   az         = "us-east-1d"
@@ -53,7 +53,7 @@ module "private_subnet_1" {
 }
 
 module "private_subnet_2" {
-  source     = "./subnet"
+  source     = "./subnets"
   vpc_id     = module.vpc.vpc_id
   cidr_block = "10.0.5.0/24"
   az         = "us-east-1e"
@@ -62,7 +62,7 @@ module "private_subnet_2" {
 }
 
 module "private_subnet_3" {
-  source     = "./subnet"
+  source     = "./subnets"
   vpc_id     = module.vpc.vpc_id
   cidr_block = "10.0.6.0/24"
   az         = "us-east-1f"
