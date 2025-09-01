@@ -46,7 +46,7 @@ module "private_subnet_1" {
   vpc_id     = module.vpc.vpc_id
   cidr_block = "10.0.4.0/24"
   az         = "us-east-1d"
-  name       = "private-subnet-1-1d"
+  name       = "private-subnet-1-1a"
   public     = false
 }
 
@@ -55,7 +55,7 @@ module "private_subnet_2" {
   vpc_id     = module.vpc.vpc_id
   cidr_block = "10.0.5.0/24"
   az         = "us-east-1e"
-  name       = "private-subnet-2-1e"
+  name       = "private-subnet-2-1b"
   public     = false
 }
 
@@ -64,7 +64,7 @@ module "private_subnet_3" {
   vpc_id     = module.vpc.vpc_id
   cidr_block = "10.0.6.0/24"
   az         = "us-east-1f"
-  name       = "private-subnet-3-1f"
+  name       = "private-subnet-3-1c"
   public     = false
 }
 
