@@ -180,6 +180,6 @@ resource "aws_db_subnet_group" "subnet_group" {
 
 module "postgres_rds" {
   source = "./postgres"
-  vpc_security_group_ids  = module.rds_security_group.sg_id
+  vpc_security_group_ids  = [module.rds_security_group.sg_id]
   db_subnet_group_name    = aws_db_subnet_group.subnet_group.name
 }

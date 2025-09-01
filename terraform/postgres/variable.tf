@@ -1,5 +1,5 @@
 variable "vpc_security_group_ids" {
-  type = set(string)
+  type = list(string)
 }
 
 variable "db_subnet_group_name" {
