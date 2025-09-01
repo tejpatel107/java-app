@@ -159,3 +159,11 @@ module "private_route_table" {
   create_internet_gateway_route = false
   name                         = "java-app-vpc-private-rt"
 }
+
+#---------------------
+# Postgres RDS
+#---------------------
+
+module "postgres_rds" {
+  source = "./postgres"
+}
