@@ -106,13 +106,15 @@ module "private_security_group" {
       from_port = 22, 
       to_port = 22, 
       protocol = "tcp", 
+      cidr_blocks = [], 
       security_groups = [module.public_security_group.sg_id], 
       description = "SSH from public SG" 
     },
     { 
       from_port = 8080, 
       to_port = 8080, 
-      protocol = "tcp", 
+      protocol = "tcp",
+      cidr_blocks = [], 
       security_groups = [module.public_security_group.sg_id], 
       description = "HTTP 8080 from load balancer" },
   ]
@@ -129,6 +131,7 @@ module "rds_security_group" {
       from_port = 5432, 
       to_port = 5432, 
       protocol = "tcp", 
+      cidr_blocks = [], 
       security_groups = [module.private_security_group.sg_id, module.public_security_group.sg_id], description = "Postgres access from app servers" 
     }
   ]
