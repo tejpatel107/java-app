@@ -196,9 +196,9 @@ module "jar_files_bucket" {
   source = "./jar files s3"
 }
 
-#---------------------
-# load balancer
-#---------------------
+#---------------------------------
+# load balancer and target groups
+#---------------------------------
 module "load_balancer" {
   source = "./load balancer"
   security_groups = [module.public_security_group.sg_id]
