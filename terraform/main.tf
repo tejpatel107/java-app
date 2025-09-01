@@ -122,7 +122,7 @@ module "private_security_group" {
 
 # RDS SG - allows Postgres 5432 from private SG and public SG
 module "rds_security_group" {
-  source      = "./security_group"
+  source      = "./security groups"
   name        = "java-app-vpc-rds-sg"
   description = "Security group for RDS instances"
   vpc_id      = module.vpc.vpc_id
