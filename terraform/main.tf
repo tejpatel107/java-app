@@ -98,7 +98,7 @@ module "public_security_group" {
 # Private SG - allows SSH from public SG, HTTP 8080 from anywhere (LB)
 module "private_security_group" {
   source      = "./security groups"
-  name        = "java-app-vpc-public-sg"
+  name        = "java-app-vpc-private-sg"
   description = "Private security groups for EC2 instances"
   vpc_id      = module.vpc.vpc_id
   ingress_rules = [
