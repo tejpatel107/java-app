@@ -183,3 +183,10 @@ module "postgres_rds" {
   vpc_security_group_ids  = [module.rds_security_group.sg_id]
   db_subnet_group_name    = aws_db_subnet_group.subnet_group.name
 }
+
+#---------------------
+# jar files s3 bucket
+#---------------------
+module "jar_files_bucket" {
+  source = "./jar files s3"
+}
