@@ -69,7 +69,7 @@ module "private_subnet_3" {
 }
 
 #---------------------
-# Public Security Group
+# Security Groups
 #---------------------
 
 # Public SG - allows HTTP 80 and SSH 22 from anywhere
@@ -160,10 +160,15 @@ module "private_route_table" {
   name                         = "java-app-vpc-private-rt"
 }
 
+  #---------------------#
+  #     Resources       #
+  #---------------------#
+
 #---------------------
 # Postgres RDS
 #---------------------
 
+# subnet group for rds security group
 resource "aws_db_subnet_group" "subnet_group" {
   name       = "java-app-rds-subnet-group"
   subnet_ids = [
@@ -189,4 +194,14 @@ module "postgres_rds" {
 #---------------------
 module "jar_files_bucket" {
   source = "./jar files s3"
+}
+
+#---------------------
+# load balancer
+#---------------------
+module "load_balancer" {
+  source = "./load balancer"
+  security_groups = [module.public_security_group]
+  subnets = [module.public_subnet_1.subnet_id,module.public_subnet_2.subnet_id,module.public_subnet_3.subnet_id]
+  vpc_id = module.vpc.vpc_id
 }
