@@ -1,9 +1,9 @@
 resource "aws_db_subnet_group" "subnet_group" {
   name       = "java-app-rds-subnet-group"
   subnet_ids = [
-    module.private_subnet_1.id,
-    module.private_subnet_2.id,
-    module.private_subnet_3.id
+    module.private_subnet_1.subnet_id,
+    module.private_subnet_2.subnet_id,
+    module.private_subnet_3.subnet_id
   ]
 
   tags = {
