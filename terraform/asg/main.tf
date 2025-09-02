@@ -16,7 +16,7 @@ resource "aws_autoscaling_group" "asg" {
 }
 
 resource "aws_launch_template" "launch_template" {
-  name = "java-app-lt"
+  name = "java-app-launch-template"
   image_id = var.ami_id
   instance_type = "t3.micro"
   vpc_security_group_ids = var.vpc_security_group_ids
