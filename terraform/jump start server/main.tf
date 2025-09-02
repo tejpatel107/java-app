@@ -8,3 +8,12 @@ resource "aws_instance" "jump_start_server" {
   iam_instance_profile   = var.instance_profile
   subnet_id              = var.subnet_id
 }
+
+resource "aws_ami_from_instance" "baked_ami" {
+  name = "java-app-ami"
+  source_instance_id = aws_instance.jump_start_server.id
+
+  tags = {
+    Name = "baked-ami"
+  }
+}
