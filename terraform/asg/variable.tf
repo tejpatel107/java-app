@@ -18,3 +18,11 @@ variable "desired_capacity" {
   type    = string
   default = 2
 }
+
+variable "vpc_security_group_ids" {
+  type = list(string)
+}
+
+variable "ami_id" {
+  type = string
+}

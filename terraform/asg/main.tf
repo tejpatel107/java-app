@@ -9,8 +9,16 @@ resource "aws_autoscaling_group" "asg" {
   health_check_type = "EC2"
 
   launch_template {
-    id = "lt-02557d246e0e9a5ec"
+    id = aws_launch_template.launch_template.id
     version = "$Latest"
     
   }
+}
+
+resource "aws_launch_template" "launch_template" {
+  name = "java-app-launch-template"
+  image_id = var.ami_id
+  instance_type = "t3.micro"
+  vpc_security_group_ids = var.vpc_security_group_ids
+  key_name = "terraform-ssh"
 }

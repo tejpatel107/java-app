@@ -234,11 +234,13 @@ module "jump_start_server" {
 }
 
 
-# module "autoscaling_group" {
-#   source = "./asg"
-#   target_group_arns = [module.load_balancer.target_group_arn]
-#   subnet_ids = [
-#     module.private_subnet_1.subnet_id,
-#     module.private_subnet_2.subnet_id,
-#     module.private_subnet_3.subnet_id]
-# }
+module "autoscaling_group" {
+  source = "./asg"
+  target_group_arns = [module.load_balancer.target_group_arn]
+  subnet_ids = [
+    module.private_subnet_1.subnet_id,
+    module.private_subnet_2.subnet_id,
+    module.private_subnet_3.subnet_id]
+  ami_id = module.jump_start_server.ami_id
+  vpc_security_group_ids = [module.public_security_group]
+}
