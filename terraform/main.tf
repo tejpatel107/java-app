@@ -227,11 +227,11 @@ module "load_balancer" {
 # jump start server
 #---------------------------------
 
-# module "jump_start_server" {
-#   source = "./jump start server"
-#   security_group_id = [module.public_security_group.sg_id]
-#   subnet_id = module.public_subnet_2.subnet_id
-# }
+module "jump_start_server" {
+  source = "./jump start server"
+  security_group_id = [module.public_security_group.sg_id]
+  subnet_id = module.public_subnet_2.subnet_id
+}
 
 module "autoscaling_group" {
   source = "./asg"

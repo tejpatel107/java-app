@@ -14,13 +14,12 @@ resource "aws_lb_target_group" "target_group" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
   health_check {
-    path                = "/"
+    path                = "/home"
     interval            = 30
     timeout             = 5
     healthy_threshold   = 5
     unhealthy_threshold = 2
     matcher             = "200"
-    port                = 80
   }
 }
 
