@@ -79,25 +79,25 @@ module "public_security_group" {
   description = "Public security group for java app jump start server and load balancer"
   vpc_id      = module.vpc.vpc_id
   ingress_rules = [
-    { 
-      from_port = 22, 
-      to_port = 22, 
-      protocol = "tcp", 
-      cidr_blocks = ["0.0.0.0/0"], 
-      description = "SSH from anywhere" 
-    },
-    { 
-      from_port = 80, 
-      to_port = 80, 
-      protocol = "tcp", 
-      cidr_blocks = ["0.0.0.0/0"], 
-      description = "HTTP from anywhere" 
+    {
+      from_port   = 22,
+      to_port     = 22,
+      protocol    = "tcp",
+      cidr_blocks = ["0.0.0.0/0"],
+      description = "SSH from anywhere"
     },
     {
-      from_port = 8080, 
-      to_port = 8080, 
-      protocol = "tcp", 
-      cidr_blocks = ["0.0.0.0/0"], 
+      from_port   = 80,
+      to_port     = 80,
+      protocol    = "tcp",
+      cidr_blocks = ["0.0.0.0/0"],
+      description = "HTTP from anywhere"
+    },
+    {
+      from_port   = 8080,
+      to_port     = 8080,
+      protocol    = "tcp",
+      cidr_blocks = ["0.0.0.0/0"],
       description = "HTTP from anywhere to port 8080"
     }
   ]
@@ -110,29 +110,29 @@ module "private_security_group" {
   description = "Private security groups for EC2 instances"
   vpc_id      = module.vpc.vpc_id
   ingress_rules = [
-    { 
-      from_port = 22, 
-      to_port = 22, 
-      protocol = "tcp", 
-      cidr_blocks = [], 
-      security_groups = [module.public_security_group.sg_id], 
-      description = "SSH from public SG" 
-    },
-    { 
-      from_port = 8080, 
-      to_port = 8080, 
-      protocol = "tcp",
-      cidr_blocks = [], 
-      security_groups = [module.public_security_group.sg_id], 
-      description = "HTTP 8080 from load balancer" 
+    {
+      from_port       = 22,
+      to_port         = 22,
+      protocol        = "tcp",
+      cidr_blocks     = [],
+      security_groups = [module.public_security_group.sg_id],
+      description     = "SSH from public SG"
     },
     {
-      from_port = 80, 
-      to_port = 80, 
-      protocol = "tcp",
-      cidr_blocks = [], 
-      security_groups = [module.public_security_group.sg_id], 
-      description = "HTTP 80 from load balancer for health check"
+      from_port       = 8080,
+      to_port         = 8080,
+      protocol        = "tcp",
+      cidr_blocks     = [],
+      security_groups = [module.public_security_group.sg_id],
+      description     = "HTTP 8080 from load balancer"
+    },
+    {
+      from_port       = 80,
+      to_port         = 80,
+      protocol        = "tcp",
+      cidr_blocks     = [],
+      security_groups = [module.public_security_group.sg_id],
+      description     = "HTTP 80 from load balancer for health check"
     }
   ]
 }
@@ -144,12 +144,12 @@ module "rds_security_group" {
   description = "Security group for RDS instances"
   vpc_id      = module.vpc.vpc_id
   ingress_rules = [
-    { 
-      from_port = 5432, 
-      to_port = 5432, 
-      protocol = "tcp", 
-      cidr_blocks = [], 
-      security_groups = [module.private_security_group.sg_id, module.public_security_group.sg_id], description = "Postgres access from app servers" 
+    {
+      from_port       = 5432,
+      to_port         = 5432,
+      protocol        = "tcp",
+      cidr_blocks     = [],
+      security_groups = [module.private_security_group.sg_id, module.public_security_group.sg_id], description = "Postgres access from app servers"
     }
   ]
 }
@@ -160,26 +160,26 @@ module "rds_security_group" {
 
 # Public route table
 module "public_route_table" {
-  source                     = "./route tables"
-  vpc_id                      = module.vpc.vpc_id
-  subnet_ids                  = [module.public_subnet_1.subnet_id,module.public_subnet_2.subnet_id,module.public_subnet_3.subnet_id]
-  internet_gateway_id          = module.vpc.igw_id
+  source                        = "./route tables"
+  vpc_id                        = module.vpc.vpc_id
+  subnet_ids                    = [module.public_subnet_1.subnet_id, module.public_subnet_2.subnet_id, module.public_subnet_3.subnet_id]
+  internet_gateway_id           = module.vpc.igw_id
   create_internet_gateway_route = true
-  name                         = "java-app-vpc-public-rt"
+  name                          = "java-app-vpc-public-rt"
 }
 
 # Private route table
 module "private_route_table" {
-  source                     = "./route tables"
-  vpc_id                      = module.vpc.vpc_id
-  subnet_ids                  = [module.private_subnet_1.subnet_id,module.private_subnet_2.subnet_id,module.private_subnet_3.subnet_id]
+  source                        = "./route tables"
+  vpc_id                        = module.vpc.vpc_id
+  subnet_ids                    = [module.private_subnet_1.subnet_id, module.private_subnet_2.subnet_id, module.private_subnet_3.subnet_id]
   create_internet_gateway_route = false
-  name                         = "java-app-vpc-private-rt"
+  name                          = "java-app-vpc-private-rt"
 }
 
-  #---------------------#
-  #     Resources       #
-  #---------------------#
+#---------------------#
+#     Resources       #
+#---------------------#
 
 #---------------------
 # Postgres RDS
@@ -187,7 +187,7 @@ module "private_route_table" {
 
 # subnet group for rds security group
 resource "aws_db_subnet_group" "subnet_group" {
-  name       = "java-app-rds-subnet-group"
+  name = "java-app-rds-subnet-group"
   subnet_ids = [
     module.private_subnet_1.subnet_id,
     module.private_subnet_2.subnet_id,
@@ -201,9 +201,9 @@ resource "aws_db_subnet_group" "subnet_group" {
 
 
 module "postgres_rds" {
-  source = "./postgres"
-  vpc_security_group_ids  = [module.rds_security_group.sg_id]
-  db_subnet_group_name    = aws_db_subnet_group.subnet_group.name
+  source                 = "./postgres"
+  vpc_security_group_ids = [module.rds_security_group.sg_id]
+  db_subnet_group_name   = aws_db_subnet_group.subnet_group.name
 }
 
 #---------------------
@@ -217,8 +217,17 @@ module "jar_files_bucket" {
 # load balancer and target groups
 #---------------------------------
 module "load_balancer" {
-  source = "./load balancer"
+  source          = "./load balancer"
   security_groups = [module.public_security_group.sg_id]
-  subnets = [module.public_subnet_1.subnet_id,module.public_subnet_2.subnet_id,module.public_subnet_3.subnet_id]
-  vpc_id = module.vpc.vpc_id
+  subnets         = [module.public_subnet_1.subnet_id, module.public_subnet_2.subnet_id, module.public_subnet_3.subnet_id]
+  vpc_id          = module.vpc.vpc_id
+}
+
+module "autoscaling_group" {
+  source = "./asg"
+  target_group_arns = [module.load_balancer.target_group_arn]
+  subnet_ids = [
+    module.private_subnet_1.subnet_id,
+    module.private_subnet_2.subnet_id,
+    module.private_subnet_3.subnet_id]
 }

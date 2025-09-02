@@ -35,9 +35,9 @@
 terraform {
   backend "s3" {
     bucket         = "java-app-iac-backend-bucket" # S3 bucket name
-    key            = "terraform.tfstate"      # Path to store state file
-    region         = "us-east-1"              # S3 bucket region
-    dynamodb_table = "java-app-backend-state-lock"     # Optional - for state locking
-    encrypt        = true                     # Encrypt state at rest
+    key            = "terraform.tfstate"           # Path to store state file
+    region         = "us-east-1"                   # S3 bucket region
+    dynamodb_table = "java-app-backend-state-lock" # Optional - for state locking
+    encrypt        = true                          # Encrypt state at rest
   }
 }
