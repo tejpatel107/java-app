@@ -223,6 +223,17 @@ module "load_balancer" {
   vpc_id          = module.vpc.vpc_id
 }
 
+#---------------------------------
+# jump start server
+#---------------------------------
+
+module "jump_start_server" {
+  source = "./jump start server"
+  security_group_id = [module.public_security_group.sg_id]
+  subnet_id = module.public_subnet_2.subnet_id
+}
+
+
 # module "autoscaling_group" {
 #   source = "./asg"
 #   target_group_arns = [module.load_balancer.target_group_arn]
