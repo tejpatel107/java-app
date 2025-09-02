@@ -1,10 +1,3 @@
-
-variable "instance_name" {
-  description = "Tag name for the instance"
-  type        = string
-  default     = "jump-start-server"
-}
-
 variable "ami" {
   description = "AMI ID for the EC2 instance"
   type        = string
@@ -27,7 +20,7 @@ variable "tags" {
   description = "Tags for the EC2 instance"
   type        = map(string)
   default = {
-    Name = "amazon-linux-ec2"
+    Name = "jump-start-server"
   }
 }
 

@@ -20,6 +20,7 @@ resource "aws_lb_target_group" "target_group" {
     healthy_threshold   = 5
     unhealthy_threshold = 2
     matcher             = "200"
+    port                = 80
   }
 }
 
