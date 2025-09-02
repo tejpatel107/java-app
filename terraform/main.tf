@@ -91,7 +91,15 @@ module "public_security_group" {
       to_port = 80, 
       protocol = "tcp", 
       cidr_blocks = ["0.0.0.0/0"], 
-      description = "HTTP from anywhere" },
+      description = "HTTP from anywhere" 
+    },
+    {
+      from_port = 8080, 
+      to_port = 8080, 
+      protocol = "tcp", 
+      cidr_blocks = ["0.0.0.0/0"], 
+      description = "HTTP from anywhere to port 8080"
+    }
   ]
 }
 
@@ -116,7 +124,16 @@ module "private_security_group" {
       protocol = "tcp",
       cidr_blocks = [], 
       security_groups = [module.public_security_group.sg_id], 
-      description = "HTTP 8080 from load balancer" },
+      description = "HTTP 8080 from load balancer" 
+    },
+    {
+      from_port = 80, 
+      to_port = 80, 
+      protocol = "tcp",
+      cidr_blocks = [], 
+      security_groups = [module.public_security_group.sg_id], 
+      description = "HTTP 80 from load balancer for health check"
+    }
   ]
 }
 

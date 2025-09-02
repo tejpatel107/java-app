@@ -13,6 +13,7 @@ resource "aws_db_instance" "postgres" {
   password                = "java-postgres" 
   port                    = 5432
 
+  # depends_on              = [aws_subnet.my_private_subnet]
   multi_az                = false
   backup_retention_period = 7
   skip_final_snapshot     = true
