@@ -242,5 +242,5 @@ module "autoscaling_group" {
     module.private_subnet_2.subnet_id,
     module.private_subnet_3.subnet_id]
   ami_id = module.jump_start_server.ami_id
-  vpc_security_group_ids = [module.public_security_group]
+  vpc_security_group_ids = [module.public_security_group.sg_id]
 }
