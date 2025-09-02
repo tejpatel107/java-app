@@ -72,11 +72,11 @@ variable "user_data" {
                 [Service]
                 User=ec2-user
                 EnvironmentFile=/etc/java-app.env
-                ExecStart=/usr/bin/java -jar /home/ec2-user/java-app.jar
+                ExecStart=/usr/bin/java -jar /home/ec2-user/app/java-app.jar
                 Restart=always
                 RestartSec=5
-                StandardOutput=file:/home/ec2-user/app.log
-                StandardError=file:/home/ec2-user/app-error.log
+                StandardOutput=file:/home/ec2-user/app/app.log
+                StandardError=file:/home/ec2-user/app/app-error.log
 
                 [Install]
                 WantedBy=multi-user.target
