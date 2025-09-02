@@ -223,11 +223,11 @@ module "load_balancer" {
   vpc_id          = module.vpc.vpc_id
 }
 
-module "autoscaling_group" {
-  source = "./asg"
-  target_group_arns = [module.load_balancer.target_group_arn]
-  subnet_ids = [
-    module.private_subnet_1.subnet_id,
-    module.private_subnet_2.subnet_id,
-    module.private_subnet_3.subnet_id]
-}
+# module "autoscaling_group" {
+#   source = "./asg"
+#   target_group_arns = [module.load_balancer.target_group_arn]
+#   subnet_ids = [
+#     module.private_subnet_1.subnet_id,
+#     module.private_subnet_2.subnet_id,
+#     module.private_subnet_3.subnet_id]
+# }

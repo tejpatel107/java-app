@@ -11,5 +11,6 @@ resource "aws_autoscaling_group" "asg" {
   launch_template {
     id = "lt-02557d246e0e9a5ec"
     version = "$Latest"
+    
   }
 }
