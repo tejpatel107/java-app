@@ -56,7 +56,7 @@ variable "user_data" {
                 sudo aws s3 cp s3://java-app-jar-files-bucket/jars/demo-0.0.1-SNAPSHOT.jar /home/ec2-user/app/java-app.jar
                 sudo chown ec2-user:ec2-user /home/ec2-user/app/java-app.jar
                 sudo chmod u+x /home/ec2-user/app/java-app.jar
-                
+
                 sudo tee /etc/java-app.env > /dev/null <<'EOL'
                 DB_HOST=java-app-postgres.c0l8oguqa1lb.us-east-1.rds.amazonaws.com
                 DB_PORT=5432
@@ -86,6 +86,11 @@ variable "user_data" {
                 sudo systemctl daemon-reload
                 sudo systemctl enable java-app
                 sudo systemctl start java-app
+
+                sudo yum install -y httpd
+                sudo systemctl enable httpd
+                sudo systemctl start httpd
+
       
   EOF
 }
